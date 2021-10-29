@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <style>
+
+    body, h1, section, div, form, input, button, img, p, span {
+        margin: 0;
+        padding: 0;
+        box-sizing: content-box;
+    }    
+    
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    /* esta ok */
+    header {
+        background: #D1E8E7;
+        max-width: 200;
+        border-radius: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        color: #000 ;
+        padding: 30px;
+        text-align: center;
+    }   
+
+    input{
+		width: 150%;
+        max-width: 200;
+		padding: 12px 20px;
+		margin: 10px 0;
+		box-sizing: border-box;
+	}
+
+    input::placeholder {
+	  font-weight: bolder;
+	  color: #0a9396;
+	}
+
+	.submit{
+	    font-weight: bolder;
+		background-color: #6BA3E8;
+	}
+    
+    .container_pesquisar {
+        display: flex;
+        margin: 20px;
+        max-width: 200 ;
+        justify-content: center;                
+    }
+       
+    
+    </style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>APP DE PREVISÃO DE TEMPO</title>   
+</head>
+<body>
+<header class="container">           
+            <div class="container">
+                <h1 class="title">
+                    APP                 </h1>
+                <h1 class="title">
+                    <strong>PREVISÃO DE TEMPO</strong>
+                </h1>
+            </div>            
+</header>    
+    <section class="section">
+        <div class="container_pesquisar">                            
+                    <form method="POST">
+                        {% csrf_token %}                                           
+                            <input class='input' type"text" placeholder="Digite aqui o nome da cidade ...">                                                  
+                    </form>   
+                    </div>   
+                <div class="container_submit">                
+                    <form method="POST">                                                          
+                            <button type="submit" class="button is-warning">
+                            Pesquisar cidade
+                            </button>                            
+                    </form>
+                </div>            
+    </section>
+
+    <section class="section">        
+            <div class="media-left">
+                <figure class="image is-50x50">
+                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                </figure>
+            </div>                            
+            <div class="content">
+                <p>
+                    <span class="title">{{ city_weather.city }}</span> 
+                    <br>
+                    <span class="subtitle">{{ city_weather.temperature }}° F</span>
+                    <br> {{ city_weather.temp_min }}                                     
+                     <br> {{ city_weather.temp_max }}
+                </p>
+                    </div>                                                 
+    </section>
+</body>
+</html>
