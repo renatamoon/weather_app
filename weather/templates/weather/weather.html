@@ -1,105 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">    
-    <style>
+{% load converter_celsius %}
 
-    body, h1, section, div, form, input, button, img, p, span {
-        margin: 0;
-        padding: 0;
-        box-sizing: content-box;
-    }    
-    
-    .container {
-        max-width: 500px;
-        margin: 0 auto;
+<html lang="en">
+
+  <style>
+    body,
+    h1,
+    section,
+    div,
+    form,
+    input,
+    button,
+    img,
+    p,
+    span {      
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
+    
+    section {
+      box-shadow: black;
+
+    }
+
     /* esta ok */
     header {
-        background: #D1E8E7;
-        max-width: 200;
-        border-radius: 20px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        text-transform: capitalize;
-        letter-spacing: 2px;
-        color: #000 ;
-        padding: 30px;
-        text-align: center;
-    }   
-
-    input{
-		width: 150%;
-        max-width: 200;
-		padding: 12px 20px;
-		margin: 10px 0;
-		box-sizing: border-box;
-	}
-
-    input::placeholder {
-	  font-weight: bolder;
-	  color: #0a9396;
-	}
-
-	.submit{
-	    font-weight: bolder;
-		background-color: #6BA3E8;
-	}
-    
-    .container_pesquisar {
-        display: flex;
-        margin: 20px;
-        max-width: 200 ;
-        justify-content: center;                
+      background-color: rgba(184, 72, 100, 0.5);
+      font-family: "Century Gothic",Verdana,sans-serif;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      padding: 20px;
+      text-align: center;
+      border-radius: 3px;
+      box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+      width:36%;
+      margin: 20px auto;
+      padding:20px;
     }
-       
-    
-    </style>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>APP DE PREVISÃO DE TEMPO</title>   
-</head>
-<body>
-<header class="container">           
-            <div class="container">
-                <h1 class="title">
-                    APP                 </h1>
-                <h1 class="title">
-                    <strong>PREVISÃO DE TEMPO</strong>
-                </h1>
-            </div>            
-</header>    
-    <section class="section">
-        <div class="container_pesquisar">                            
-                    <form method="POST">
-                        {% csrf_token %}                                           
-                            <input class='input' type"text" placeholder="Digite aqui o nome da cidade ...">                                                  
-                    </form>   
-                    </div>   
-                <div class="container_submit">                
-                    <form method="POST">                                                          
-                            <button type="submit" class="button is-warning">
-                            Pesquisar cidade
-                            </button>                            
-                    </form>
-                </div>            
-    </section>
+    .container_pesquisar {
+      display: flex;
+      margin: 40px;
+      justify-content: center;
+    }
 
-    <section class="section">        
-            <div class="media-left">
-                <figure class="image is-50x50">
-                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
-                </figure>
-            </div>                            
-            <div class="content">
-                <p>
-                    <span class="title">{{ city_weather.city }}</span> 
-                    <br>
-                    <span class="subtitle">{{ city_weather.temperature }}° F</span>
-                    <br> {{ city_weather.temp_min }}                                     
-                     <br> {{ city_weather.temp_max }}
-                </p>
-                    </div>                                                 
+    .container_pesquisar {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container_pesquisar input {
+      padding: 8px;
+      height: 42px; width : 300px;
+      max-width: 350%;
+      justify-content: center;
+      border-radius: 3px;
+      border: 1px solid black;
+      font-family: "Century Gothic",Verdana,sans-serif;
+    }
+
+
+    .container_pesquisar button {      
+      font-size: 15px;
+      padding-top: 20px;
+      border: 1px solid black;
+      border-left: none;
+      border-radius: solid 20px;
+      justify-content: center;
+      background: rgba(184, 72, 100, 0.5);
+      color: #fff;
+      font-family: "Century Gothic",Verdana,sans-serif;
+      font-weight: bold;
+      padding: 8px;
+      cursor: auto;
+    }
+
+    .container_pesquisar button:hover {
+      font-size: 1.2em;
+      background: #454e52;
+      color: white;
+    }
+
+    div__master {
+      border-style: solid ;
+    }
+
+    .weather_number{
+      font-size: 1.2em;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      padding: 5px;
+      max-width: 36%;
+      background: #e0cbf7;
+      border-radius: 5px;
+    }
+
+    .city_name{
+      font-size: 1.2em;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      max-width: 36%;
+      background: #e0cbf7;
+      border-radius: 5px;
+
+    }
+
+    .description_weather {
+      font-size: 1.2em;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      max-width: 36%;
+      background: #e0cbf7;
+      border-radius: 5px;
+    }
+
+    .media_weather {
+    margin: 10px auto;    
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    max-width: 36%;
+    background: #ffffff;
+    border-radius: 5px;    
+
+
+  </style>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiwidgetv="X-UA-Compatible" content="ie=edge" />
+    <title> weather forecast
+    </title>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <header class="container">
+      <div class="container">
+        <h1 class="title">APP</h1>
+        <h1 class="title">
+          <strong>WEATHER FORECAST TODAY</strong>
+        </h1>
+      </div>
+    </header>
+
+    <section>
+      <div class="container_pesquisar">
+        <form method="POST">
+          {% csrf_token %}          
+          {{ form.name }}
+          <div class="pesquisar_cidade">
+            <button type="submit" class="button is-warning">
+              Click to search
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {% for city_weather in data %}
+
+      <div class="media_weather">         
+          <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image" height="150" width="150">
+      </div>
+
+      <div class ="city_name">
+
+          <span class="title"><b>CITY: </b>{{ city_weather.city }} </span>
+          </div>
+
+      <div class="weather_number"> 
+        <br />
+          <span class="subtitle"
+            ><b>TEMPERATURE: </b> {{ city_weather.temperature | converter }}°C</span
+          >
+        </div>
+        
+      <div class="description_weather">
+        <p>          
+          
+          </br>
+          <b>MINIMUN TEMPERATURE: </b>{{city_weather.temp_min | converter }} °C</br>
+          <b>MAXIMUN TEMPERATURE: </b>{{ city_weather.temp_max | converter }}°C </br>
+          <b>DESCRIPTION OF THE WEATHER: </b>{{ city_weather.description }}
+        </p>
+      </div>        
+     
+      {% endfor %}
     </section>
-</body>
+  </body>
 </html>
