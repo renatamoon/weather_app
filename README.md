@@ -19,12 +19,12 @@ APP WEATHER FORECAST
 <b>-Ativando o virtual environment:</b> .\venv\Scripts\activate<br>
 <b>-Execução do arquivo requirements e instalar dependencias:</b> pip install -r requirements.txt<br>
   
-OU <br>
+# OU <br>
   
 Faça a execução do arquivo installer.sh (SOMENTE PARA LINUX) com os seguintes comandos no terminal: <br>
 
-chmod +x filename.sh
-sudo ./filename.sh  
+chmod +x filename.sh <br>
+sudo ./filename.sh  <br>
   
 ------
 
