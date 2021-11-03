@@ -16,10 +16,7 @@ def index(request):
 
     cities = City.objects.all()
 
-    data = []
-
     for city in cities:
-
         r = requests.get(url.format(city)).json()            
 
         city_weather = {
@@ -31,8 +28,10 @@ def index(request):
             'icon' : r['weather'][0]['icon'],       
 
         }
-
+        data = []
         data.append(city_weather)
+        
+
 
     context = {'data': data, 'form':form}
 
