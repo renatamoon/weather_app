@@ -87,7 +87,7 @@ DATABASES = {
   
 ------
 
-# <a id="imagens">ALGUMAS IMAGENS DO PROJETINHO</a> 
+# <a id="imagens">IMAGEM DO PROJETO</a> 
   
 ------
 
