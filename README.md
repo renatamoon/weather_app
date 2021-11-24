@@ -19,7 +19,7 @@ e mostrar as informações de clima de uma determinada cidade a partir da cidade
   
     *Funcionalidade de busca;
     *Trás na tela as informações de tempo de determinada cidade que foi buscada;
-    *Clima em Celcius;
+    *Clima em Celsius;
 
 > 🟩 Status do projeto: FINALIZADO <br>
 
